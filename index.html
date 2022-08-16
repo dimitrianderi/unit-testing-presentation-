@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>UNIT-testing</title>
+
+	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author" content="Hakim El Hattab">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+				<h2>Unit testing</h2>
+				<p class="fragment">Why testing is needed</p>
+				<p class="fragment">Levels of Testing</p>
+				<p class="fragment">Benefits of Unit Testing</p>
+				<p class="fragment">Disadvantages of unit testing</p>
+				<p class="fragment">TDD principle</p>
+				<p class="fragment">Unit testing tools</p>
+				<p class="fragment">Examples</p>
+			</section>
+
+			<section>
+				<h2>Why testing is needed</h2>
+				<p class="fragment">Saves money</p>
+				<p class="fragment">Ensures code security</p>
+				<p class="fragment">Improves architecture</p>
+				<p class="fragment">Improves code quality</p>
+				<p class="fragment">Simplifies refactoring</p>
+			</section>
+
+			<section>
+				<h2>Levels of Testing</h2>
+				<img src="piramid1.png" alt="piramid">
+			</section>
+
+			<section>
+				<h2>Pyramid of Mike Cohn</h2>
+				<img src="piramid2.png" alt="piramid">
+			</section>
+
+			<section>
+				<h2>Benefits of Unit Testing</h2>
+				<p class="fragment">The fastest</p>
+				<p class="fragment">The lightest</p>
+				<p class="fragment">The cheapest</p>
+				<p class="fragment">Different units can be tested at the same time</p>
+				<p class="fragment">Easy to automate</p>
+				<p class="fragment">It is easy to calculate what percentage of the code is covered by tests</p>
+			</section>
+
+			<section>
+				<h2>Disadvantages of unit testing</h2>
+				<p class="fragment">Writing tests can take longer than the code itself.</p>
+				<p class="fragment">Unit testing does not guarantee that all bugs will be found.</p>
+				<p class="fragment">Unit testing cannot reveal systemic bugs in the product as a whole.</p>
+			</section>
+
+			<section>
+				<h2>TDD</h2>
+				<img src="tdd.jpeg" alt="piramid">
+			</section>
+
+			<section>
+				<h2>Unit testing tools in JS</h2>
+				<p class="fragment">MochaJS</p>
+				<p class="fragment">Jasmine</p>
+				<p class="fragment">AVA</p>
+				<p class="fragment">JEST</p>
+				<p class="fragment">Karma</p>
+			</section>
+
+			<section>
+				<h2>How to create a unit test</h2>
+				<p>
+				<pre data-id="code-animation">
+						<code class="hljs" data-trim data-line-numbers>
+							npm install --save-dev jest
+						</code>
+					</pre>
+				</p>
+				<p>Create file name.test.js / name.test.ts</p>
+				<p>
+				<pre data-id="code-animation">
+						<code class="hljs" data-trim data-line-numbers>
+							import func from '../file'
+						</code>
+					</pre>
+				</p>
+			</section>
+
+			<section>
+				<h2>Unit test structure</h2>
+				<p>
+				<h5>One unit-test</h5>
+				<pre data-id="code-animation">
+					<code class="hljs" data-trim data-line-numbers>
+						test('description', () => {
+							expect(data).toBe(value);
+						});
+					</code>
+				</pre>
+				</p>
+				<p>
+				<h5>Group unit-tests</h5>
+				<pre data-id="code-animation">
+					<code class="hljs" data-trim data-line-numbers>
+						describe('group description', () => {
+							test('description', () => {
+								expect(data).toBe(value);
+							});
+
+							test('description', () => {
+								expect(data).toBe(value);
+							});
+						}
+					</code>
+				</pre>
+				</p>
+
+			</section>
+
+			<section>
+				<h2>Example 1</h2>
+				<p>
+					<h5>Our function</h5>
+					<pre data-id="code-animation">
+						<code class="hljs" data-trim data-line-numbers>
+							function sum(a, b) {
+								return a + b;
+							}
+						</code>
+					</pre>
+					</p>
+				<p>
+				<h5>Get the amount</h5>
+				<pre data-id="code-animation">
+					<code class="hljs" data-trim data-line-numbers>
+						test('adds 1 + 2 to equal 3', () => {
+							expect(sum(1, 2)).toBe(3);
+						});
+					</code>
+				</pre>
+				</p>
+			</section>
+
+			<section>
+				<h2>Example 2</h2>
+				<p>
+					<h5>Our function</h5>
+					<pre data-id="code-animation">
+						<code class="hljs" data-trim data-line-numbers>
+							function oldPerson(born) {
+								return 2022 - born;
+							}
+						</code>
+					</pre>
+					</p>
+				<p>
+				<h5>Get a number greater than 60</h5>
+				<pre data-id="code-animation">
+					<code class="hljs" data-trim data-line-numbers>
+						test('person at least 60 years old', () => {
+							expect(oldPerson(1940)).toBeGreaterThan(60);
+						});
+					</code>
+				</pre>
+				</p>
+			</section>
+
+			<section>
+				<h2>Example 3</h2>
+				<p>
+					<h5>Our function</h5>
+					<pre data-id="code-animation">
+						<code class="hljs" data-trim data-line-numbers>
+							function people(user) {
+								user.age = 30;
+								return user;
+							}
+						</code>
+					</pre>
+					</p>
+				<p>
+				<h5>Compare two objects</h5>
+				<pre data-id="code-animation">
+					<code class="hljs" data-trim data-line-numbers>
+						test('objects must be equal', () => {
+							expect(people({name: 'Alex'})).toEqual({name: 'Alex', age: 30});
+						});
+					</code>
+				</pre>
+				</p>
+			</section>
+		</div>
+
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/search/search.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+
+		// Also available as an ES module, see:
+		// https://revealjs.com/initialization/
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			center: true,
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight]
+		});
+
+	</script>
+
+</body>
+
+</html>
